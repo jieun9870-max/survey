@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BIM 기반 생태면적률 시스템 — 조경 실무자 설문 | 서울대 이지은</title>
+  <meta name="description" content="서울대학교 환경설계학과 석사과정 이지은의 학위 논문 연구 설문조사입니다. BIM 기반 생태면적률 자동 산출 시스템에 대한 조경설계 실무자분들의 의견을 부탁드립니다. 선착순 50명 커피 쿠폰 증정." />
+  <meta name="keywords" content="BIM, 생태면적률, 조경설계, Revit, pyRevit, 서울대학교, 학술 연구" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="조경설계 실무자분들의 의견이 필요합니다" />
+  <meta property="og:description" content="서울대 석사 학위 연구 · 10~15분 소요 · 선착순 50명 커피 쿠폰 증정" />
+  <meta property="og:image" content="https://jieun9870-max.github.io/survey/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="ko_KR" />
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom styles (Pretendard + CSS variables) -->
+  <link rel="stylesheet" href="style.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2D6A4F',
+            'primary-dark': '#1B4332',
+            'primary-light': '#40916C',
+            secondary: '#95D5B2',
+            accent: '#F4A261',
+            'accent-dark': '#E76F3B',
+            'bg-main': '#FAFAF7',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-bg-main">
+
+  <!-- ──────────────────────── NAVBAR ──────────────────────── -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent" role="navigation" aria-label="주 메뉴">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- 로고 -->
+        <a href="#hero" class="flex items-center gap-2 text-primary font-bold text-lg no-underline" aria-label="페이지 상단으로 이동">
+          <span class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-sm font-black">이</span>
+          <span class="hidden sm:inline">이지은 연구</span>
+        </a>
+
+        <!-- 데스크톱 메뉴 -->
+        <ul class="hidden md:flex items-center gap-6 list-none m-0 p-0">
+          <li><a href="#about" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">연구자 소개</a></li>
+          <li><a href="#research" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">연구 내용</a></li>
+          <li><a href="#video" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">시연 영상</a></li>
+          <li>
+            <a href="#survey" class="btn-primary" style="padding:0.5rem 1.25rem; font-size:0.875rem;" aria-label="설문 참여하기">
+              설문 참여하기 →
+            </a>
+          </li>
+        </ul>
+
+        <!-- 모바일 햄버거 -->
+        <button id="menu-toggle" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-primary" aria-expanded="false" aria-controls="mobile-menu" aria-label="메뉴 열기/닫기">
+          <svg class="w-6 h-6" id="menu-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg class="w-6 h-6 hidden" id="menu-icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 모바일 드롭다운 -->
+    <div id="mobile-menu" role="menu">
+      <div class="px-4 pb-4 flex flex-col gap-2 bg-white/95 backdrop-blur-sm border-t border-gray-100">
+        <a href="#about" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary rounded-lg hover:bg-gray-50" role="menuitem">연구자 소개</a>
+        <a href="#research" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary rounded-lg hover:bg-gray-50" role="menuitem">연구 내용</a>
+        <a href="#video" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary rounded-lg hover:bg-gray-50" role="menuitem">시연 영상</a>
+        <a href="#survey" class="btn-primary text-center mt-1" role="menuitem">설문 참여하기 →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ──────────────────────── HERO ──────────────────────── -->
+  <section id="hero" class="relative min-h-screen flex items-center section-cta pt-16" aria-label="히어로 섹션">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20 text-center text-white">
+      <div class="fade-in">
+        <p class="text-sm font-semibold uppercase tracking-widest mb-4 text-green-200">서울대학교 환경설계학과 · 학위 논문 연구</p>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black leading-tight mb-5">
+          조경설계 실무자분들의<br />의견을 들려주세요
+        </h1>
+        <p class="text-lg sm:text-xl text-green-100 mb-10 max-w-2xl mx-auto font-light">
+          BIM 기반 생태면적률 자동 산출 시스템 —<br class="hidden sm:block" />서울대학교 석사 학위 연구
+        </p>
+
+        <!-- CTA 버튼 -->
+        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-10">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdH2130JaLdleyTnlZtWNjtvIdzf-mPP5CEDHXPvHPZYPqyg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large font-inter" aria-label="Google Forms 설문지 열기 (새 탭)">
+            📋 설문 참여하기 (10~15분 소요)
+          </a>
+          <a href="#video" class="btn-secondary btn-large text-white border-white hover:bg-white hover:text-primary">
+            ▶ 시연 영상 먼저 보기
+          </a>
+        </div>
+
+        <!-- 신뢰 뱃지 -->
+        <div class="flex flex-wrap justify-center items-center gap-x-1 gap-y-2">
+          <span class="trust-badge">
+            <svg class="w-4 h-4 text-green-200" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/></svg>
+            서울대학교 환경설계학과
+          </span>
+          <span class="trust-badge-separator" aria-hidden="true">·</span>
+          <span class="trust-badge">🏆 도시설계학회 우수논문상</span>
+          <span class="trust-badge-separator" aria-hidden="true">·</span>
+          <span class="trust-badge">☕ 커피 쿠폰 증정 (소진 시 조기 마감)</span>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- 웨이브 장식 -->
+    <div class="absolute bottom-0 left-0 right-0 overflow-hidden" style="line-height:0;" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display:block; width:100%; height:60px;">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FAFAF7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── ABOUT ME ──────────────────────── -->
+  <section id="about" class="py-20 px-4 sm:px-6" aria-label="연구자 소개">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="section-title">연구자 소개</h2>
+        <div class="section-divider mx-auto"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <!-- 프로필 사진 + 기본 정보 -->
+        <div class="fade-in flex flex-col items-center md:items-start gap-6">
+          <img
+            src="src/assets/images/profile.jpg"
+            alt="연구자 이지은 프로필 사진"
+            class="profile-img"
+            loading="lazy"
+            width="180"
+            height="180"
+          />
+          <div>
+            <h3 class="text-2xl font-black text-gray-900 mb-1">이지은 <span class="text-base font-medium text-gray-400 font-inter">Lee Jieun</span></h3>
+            <p class="text-sm text-primary font-semibold mb-4 leading-relaxed">
+              서울대학교 환경대학원 환경설계학과<br />
+              스마트시티글로벌융합 전공 (석사과정)
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              안녕하세요, 서울대학교 환경설계학과에서 BIM 기반 조경설계 자동화를 연구하고 있는 석사과정생 이지은입니다.
+              현재는 조경 인허가 실무의 디지털 전환을 연구하고 있습니다.
+              본 연구는 학위 논문으로 마무리되며, 현장 실무자분들의 솔직한 의견이 가장 중요한 연구 자료입니다.
+            </p>
+
+            <!-- 자격증 배지 -->
+            <div class="mb-3">
+              <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">보유 자격</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="badge">건축기사</span>
+                <span class="badge">토목기사</span>
+                <span class="badge">조경기사</span>
+                <span class="badge">도시계획기사</span>
+                <span class="badge">BIM 건축전문가</span>
+                <span class="badge">ADsP</span>
+                <span class="badge">빅데이터분석기사</span>
+              </div>
+            </div>
+            <p class="text-xs text-gray-600 italic">→ 설계 도면을 읽고, 인허가 실무를 이해하며, 데이터로 분석할 수 있는 융합 연구자입니다.</p>
+
+            <!-- 수상 내역 -->
+            <div class="mt-5">
+              <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">수상 내역</p>
+              <ul class="space-y-1.5 text-sm text-gray-700">
+                <li class="flex items-start gap-2"><span class="text-accent mt-0.5">🏆</span> BIM 기반 생태면적률 연구 우수논문 — 도시설계학회 (2025)</li>
+                <li class="flex items-start gap-2"><span class="text-accent mt-0.5">🏆</span> 데이터 기반 환경문제 솔루션 수상 — LH (2025)</li>
+                <li class="flex items-start gap-2"><span class="text-accent mt-0.5">🏆</span> 스마트시티 창업 아이디어 경진대회 수상 (2025)</li>
+                <li class="flex items-start gap-2"><span class="text-accent mt-0.5">🏆</span> 데이터 기반 사회문제 해결 수상 — 서울특별시 빅데이터 캠퍼스 (2025)</li>
+                <li class="flex items-start gap-2"><span class="text-accent mt-0.5">🏆</span> 조경디자인 연구 수상 — 졸업논문 발표회 (2023)</li>
+                <li class="flex items-start gap-2"><span class="text-accent mt-0.5">🏆</span> 최적 구조 알고리즘 개발 수상 — 교량 콘테스트 (2023)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 경력 타임라인 -->
+        <div class="fade-in">
+          <h3 class="text-lg font-bold text-gray-700 mb-4">경력 <span class="font-inter text-sm font-normal text-gray-400">Experience</span></h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <p class="text-xs font-inter font-medium text-primary mb-0.5">2025.12 – 2026.02</p>
+              <p class="font-semibold text-gray-800">삼우종합건축사사무소</p>
+              <p class="text-sm text-gray-600">데이터분석 인턴</p>
+            </div>
+            <div class="timeline-item">
+              <p class="text-xs font-inter font-medium text-primary mb-0.5">2025.06 – 2025.08</p>
+              <p class="font-semibold text-gray-800">삼우종합건축사사무소</p>
+              <p class="text-sm text-gray-600">웹개발 인턴</p>
+            </div>
+            <div class="timeline-item">
+              <p class="text-xs font-inter font-medium text-primary mb-0.5">2024.09 – 현재</p>
+              <p class="font-semibold text-gray-800">서울대학교 환경대학원</p>
+              <p class="text-sm text-gray-600">환경설계학과 석사과정</p>
+            </div>
+            <div class="timeline-item">
+              <p class="text-xs font-inter font-medium text-primary mb-0.5">2024.06 – 2024.08</p>
+              <p class="font-semibold text-gray-800">한국건설환경</p>
+              <p class="text-sm text-gray-600">친환경인증 업무 인턴</p>
+            </div>
+            <div class="timeline-item">
+              <p class="text-xs font-inter font-medium text-gray-400 mb-0.5">2019.03 – 2024.02</p>
+              <p class="font-semibold text-gray-800">중앙대학교</p>
+              <p class="text-sm text-gray-600">건설환경공학 · 생명자원공학 (졸업)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── RESEARCH ──────────────────────── -->
+  <section id="research" class="py-20 px-4 sm:px-6 bg-white" aria-label="연구 내용">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="section-title">본 연구에 대하여</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle max-w-2xl mx-auto">BIM 기반 생태면적률 자동 산출 및 최적화 의사결정 지원 시스템 개발<br><span class="text-sm">: 서울시 기준을 중심으로</span></p>
+      </div>
+
+      <!-- 연구 특징: 번호형 리스트 -->
+      <div class="max-w-2xl mx-auto mb-10 space-y-0 fade-in">
+        <div class="flex gap-8 py-7 border-t border-gray-100">
+          <div class="shrink-0 text-right" style="width:6rem">
+            <span class="text-2xl font-black text-primary font-inter leading-none">3분</span>
+          </div>
+          <div>
+            <p class="font-bold text-gray-900 mb-1">생태면적률 자동 산출</p>
+            <p class="text-sm text-gray-500 leading-relaxed">Revit 위에서 작동하는 pyRevit 플러그인으로, 수작업 30분~1시간이 걸리던 작업을 3분 안에 처리합니다.</p>
+          </div>
+        </div>
+        <div class="flex gap-8 py-7 border-t border-gray-100">
+          <div class="shrink-0 text-right" style="width:6rem">
+            <span class="text-2xl font-black text-primary font-inter leading-none">AI</span>
+          </div>
+          <div>
+            <p class="font-bold text-gray-900 mb-1">수목·재료 자동 매핑 및 최적 대안 제시</p>
+            <p class="text-sm text-gray-500 leading-relaxed">AI(OpenAI API)가 도면 상의 수목·재료를 자동 분류하고, 가중 그리디 알고리즘이 예산·공간 제약 안에서 최적 대안을 제안합니다.</p>
+          </div>
+        </div>
+        <div class="flex gap-8 py-7 border-t border-b border-gray-100">
+          <div class="shrink-0 text-right" style="width:6rem">
+            <span class="text-2xl font-black text-primary font-inter whitespace-nowrap">±0.1%p</span>
+          </div>
+          <div>
+            <p class="font-bold text-gray-900 mb-1">실무 정확도 검증 완료</p>
+            <p class="text-sm text-gray-500 leading-relaxed">수작업 산출과 비교해 ±0.1%p 이내의 정확도로, 실제 프로젝트 데이터를 통해 검증이 완료된 시스템입니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 하단 메모 -->
+      <div class="fade-in max-w-2xl mx-auto mb-10 text-center space-y-3">
+        <p class="text-sm text-gray-400 italic leading-relaxed">"본 연구는 도시설계학회 학술대회에서 우수 연구로 선정된 바 있으며, 현재 학위 논문으로 발전시키는 단계입니다."</p>
+        <p class="text-sm text-gray-600 leading-relaxed">수집된 의견은 시스템의 UI·기능·워크플로우를 실무에 맞게 개선하는 데 직접 반영할 계획입니다.</p>
+      </div>
+
+      <!-- 참여하면 드리는 것 (Research 바로 아래) -->
+      <div class="text-center mb-8 fade-in">
+        <h3 class="text-xl font-bold text-gray-800 mb-2">참여하시면 드리는 것</h3>
+        <div class="w-10 h-0.5 bg-primary mx-auto mb-6"></div>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="fade-in card text-center" style="transition-delay:0s">
+          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-2xl mx-auto mb-4">🌱</div>
+          <h3 class="font-bold text-gray-900 mb-2">학문적 기여</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">조경 분야 BIM 도입에 대한 실증 데이터로, 서울대학교 석사 학위 논문에 인용됩니다.</p>
+        </div>
+        <div class="fade-in card text-center border-2 border-accent" style="transition-delay:0.1s">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center text-2xl mx-auto mb-4" style="background:rgba(244,162,97,0.15)">☕</div>
+          <h3 class="font-bold text-gray-900 mb-2">커피 쿠폰</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">응답해 주신 분께 순서대로 커피 쿠폰을 보내드립니다.<br/><span class="text-accent font-medium text-xs">소진 시 조기 마감</span></p>
+        </div>
+        <div class="fade-in card text-center" style="transition-delay:0.2s">
+          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-2xl mx-auto mb-4">🤝</div>
+          <h3 class="font-bold text-gray-900 mb-2">인터뷰 참여 시 추가 선물</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">심층 인터뷰(30분)에 응해주시는 분께는 소정의 추가 선물을 준비했습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── VIDEO ──────────────────────── -->
+  <section id="video" class="py-20 px-4 sm:px-6" aria-label="시스템 시연 영상">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-10 fade-in">
+        <h2 class="section-title">시스템 시연 영상</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle">약 3분 30초 · 영상을 먼저 시청하신 후 설문에 응답해 주시면 <strong>정확도가 크게 향상됩니다</strong></p>
+      </div>
+
+      <div class="fade-in">
+        <div id="video-container">
+          <div class="relative" style="padding-bottom:56.25%; height:0; overflow:hidden; border-radius:1rem;">
+            <iframe
+              src="https://www.youtube.com/embed/CSu4lr8kDB4?rel=0"
+              title="BIM 기반 생태면적률 자동 산출 및 최적화 의사결정 지원 시스템 시연 영상"
+              frameborder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              style="position:absolute; top:0; left:0; width:100%; height:100%; border-radius:1rem;"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- 영상 설명 -->
+        <div class="mt-6 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm">
+          <p class="text-gray-700 leading-relaxed text-sm mb-4">
+            본 영상은 실제 Revit 환경에서 시스템이 5단계 워크플로우(① 매핑 → ② 데이터 추출 → ③ 환산면적 계산 → ④ 최종 결과 → ⑤ 최적화 추천)에 따라 생태면적률을 산출하고 대안을 추천하는 전 과정을 보여드립니다.
+          </p>
+          <ul class="space-y-1.5 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><span class="text-primary font-bold">✅</span> Revit 패밀리 → 표준 수종 DB 자동 매핑</li>
+            <li class="flex items-center gap-2"><span class="text-primary font-bold">✅</span> 대지 자동 인식 + 그리드 분할</li>
+            <li class="flex items-center gap-2"><span class="text-primary font-bold">✅</span> 자연지반 / 인공지반 / 옥상 자동 분류</li>
+            <li class="flex items-center gap-2"><span class="text-primary font-bold">✅</span> 가중 그리디 최적화로 부족분 보완 시뮬레이션</li>
+            <li class="flex items-center gap-2"><span class="text-primary font-bold">✅</span> PDF 보고서 자동 출력</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── SURVEY CTA ──────────────────────── -->
+  <section id="survey" class="py-20 px-4 sm:px-6 section-cta" aria-label="설문 참여">
+    <div class="max-w-2xl mx-auto text-center text-white fade-in">
+      <h2 class="text-3xl sm:text-4xl font-black mb-4">지금 설문 참여하기</h2>
+      <div class="flex flex-wrap justify-center gap-4 mb-3 text-sm text-green-100">
+        <span>⏱️ 약 10~15분</span>
+        <span>·</span>
+        <span>📋 객관식 위주</span>
+        <span>·</span>
+        <span>🔒 응답 내용 익명</span>
+        <span>·</span>
+        <span>☕ 커피 쿠폰 (소진 시 조기 마감)</span>
+      </div>
+      <p class="text-sm text-green-200 mb-8">설문지 마지막 섹션에서 커피 쿠폰 수령을 위한 이름·이메일을 입력해 주세요.</p>
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSfdH2130JaLdleyTnlZtWNjtvIdzf-mPP5CEDHXPvHPZYPqyg/viewform?usp=publish-editor"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary btn-large inline-block font-inter"
+        aria-label="Google Forms 설문지 새 탭에서 열기"
+      >
+        📋 설문지 열기 (Google Forms)
+      </a>
+      <p class="mt-5 text-sm text-green-100">시연 영상을 먼저 시청하시면 더 정확한 응답이 가능합니다.</p>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── INTERVIEW ──────────────────────── -->
+  <section id="interview" class="py-20 px-4 sm:px-6 bg-white" aria-label="인터뷰 안내">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-10 fade-in">
+        <h2 class="section-title">30분, 더 깊이 있는 이야기를<br />나누고 싶습니다</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle max-w-xl mx-auto">
+          설문만으로는 담지 못하는 현장의 생생한 목소리가 필요합니다.
+          30분 정도 시간을 내어주시면 <strong class="text-gray-900">대면 또는 화상(Zoom)으로</strong> 편리한 방식으로 진행하겠습니다.
+        </p>
+        <p class="mt-3 text-sm text-gray-500">인터뷰 참여 의향이 있으시면 설문지 마지막 섹션에서 체크해 주세요.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 fade-in">
+        <div class="card text-center py-6">
+          <span class="text-3xl mb-3 block" aria-hidden="true">📍</span>
+          <p class="font-semibold text-gray-800 text-sm mb-1">장소</p>
+          <p class="text-xs text-gray-600 leading-relaxed">대면: 직장 근처 카페<br />비대면: Zoom 화상 통화</p>
+        </div>
+        <div class="card text-center py-6">
+          <span class="text-3xl mb-3 block" aria-hidden="true">⏱️</span>
+          <p class="font-semibold text-gray-800 text-sm mb-1">소요 시간</p>
+          <p class="text-xs text-gray-600">약 30분</p>
+        </div>
+        <div class="card text-center py-6">
+          <span class="text-3xl mb-3 block" aria-hidden="true">🎁</span>
+          <p class="font-semibold text-gray-800 text-sm mb-1">사례</p>
+          <p class="text-xs text-gray-600">소정의 추가 선물</p>
+        </div>
+        <div class="card text-center py-6">
+          <span class="text-3xl mb-3 block" aria-hidden="true">📝</span>
+          <p class="font-semibold text-gray-800 text-sm mb-1">형식</p>
+          <p class="text-xs text-gray-600 leading-relaxed">편안한 대화<br />(녹음은 사전 동의 후에만)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── FOOTER ──────────────────────── -->
+  <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6" role="contentinfo">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid sm:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 class="text-white font-bold text-base mb-3">이지은 <span class="font-inter font-normal text-sm text-gray-500">Lee Jieun</span></h3>
+          <p class="text-sm leading-relaxed mb-1">서울대학교 환경대학원 환경설계학과</p>
+          <p class="text-sm mb-1">스마트시티글로벌융합 전공 (석사과정)</p>
+          <a href="mailto:jieun9870@snu.ac.kr" class="text-sm flex items-center gap-1 mt-2 hover:text-white transition-colors">
+            ✉ jieun9870@snu.ac.kr
+          </a>
+        </div>
+        <div>
+          <h3 class="text-white font-bold text-base mb-3">연구 분야</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded bg-gray-800 text-gray-400">BIM</span>
+            <span class="text-xs px-2 py-1 rounded bg-gray-800 text-gray-400">조경설계 자동화</span>
+            <span class="text-xs px-2 py-1 rounded bg-gray-800 text-gray-400">생태면적률</span>
+            <span class="text-xs px-2 py-1 rounded bg-gray-800 text-gray-400">데이터 분석</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 개인정보 처리방침 (인라인) -->
+      <div class="border-t border-gray-800 pt-6 mb-4">
+        <details class="text-xs text-gray-500">
+          <summary class="cursor-pointer hover:text-gray-300 transition-colors font-medium mb-2">개인정보 수집·이용 동의 안내 (클릭하여 확인)</summary>
+          <div class="mt-3 p-4 bg-gray-800 rounded-lg leading-relaxed space-y-1">
+            <p><strong class="text-gray-300">수집 항목:</strong> 이름, 이메일 주소, 회사/소속명(선택)</p>
+            <p><strong class="text-gray-300">수집 목적:</strong> 커피 쿠폰 발송 및 인터뷰 일정 조율</p>
+            <p><strong class="text-gray-300">보유 기간:</strong> 커피 쿠폰 발송 완료 후 즉시 삭제 / 설문 데이터는 학위 논문 심사 종료 후 폐기</p>
+            <p><strong class="text-gray-300">처리 위탁:</strong> Google LLC (Google Forms 응답 수집)</p>
+            <p class="text-gray-600 pt-1">동의를 거부할 권리가 있으나, 거부 시 커피 쿠폰 발송이 불가합니다.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="border-t border-gray-800 pt-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-600">
+        <p class="font-inter">© 2026 Lee Jieun. All rights reserved.</p>
+        <p>본 연구는 서울대학교 연구윤리위원회 지침을 준수합니다.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
